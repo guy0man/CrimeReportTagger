@@ -48,16 +48,27 @@ def extract_entities():
 
 # UI setup
 root = tk.Tk()
-root.title("NER Extraction")
+root.geometry("1000x800")
+root.title("Crime Report NER Extraction")
 
-text_input = scrolledtext.ScrolledText(root, width=50, height=10)
-text_input.pack()
+root.grid_rowconfigure(1, weight=1)
+root.grid_columnconfigure(1, weight=1)
+root.grid_columnconfigure(0, weight=1)
 
-process_button = tk.Button(root, text="Extract Entities", command=extract_entities)
-process_button.pack()
+label1 = tk.Label(root, text="Enter Crime Report:",font=("Arial", 16, "bold"))
+label1.grid(row=0, column=0, padx=5, pady=5)
 
-output_display = scrolledtext.ScrolledText(root, width=50, height=10)
-output_display.pack()
+text_input = scrolledtext.ScrolledText(root)
+text_input.grid(row=1,column=0,sticky="nsew", padx=10)
+
+process_button = tk.Button(root, text="Extract Entities",font=("Arial", 10) , command=extract_entities)
+process_button.grid(row=2,column=0, padx=10, pady=5, sticky="ew")
+
+label2 = tk.Label(root, text="Entities",font=("Arial", 16, "bold"))
+label2.grid(row=0, column=1, padx=5, pady=5)
+
+output_display = scrolledtext.ScrolledText(root)
+output_display.grid(row=1,column=1,rowspan=2, sticky="nsew", padx=10)
 output_display.config(state="disabled") 
 
 root.mainloop()
